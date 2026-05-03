@@ -1,0 +1,121 @@
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-blue: #2563eb;
+  --brand-blue-light: #3b82f6;
+  --brand-green: #22c55e;
+  --dark-bg: #080b14;
+  --dark-surface: #0f1523;
+  --dark-card: #131928;
+  --dark-border: #1e2a3b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--dark-bg);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dark-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-blue);
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(37, 99, 235, 0.35);
+  color: white;
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-dark-card/80 backdrop-blur-md border border-dark-border/60;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-blue-light to-brand-green bg-clip-text text-transparent;
+  }
+
+  /* Neon border */
+  .neon-border {
+    @apply border border-brand-blue/30 shadow-blue-glow;
+  }
+
+  /* Category pill */
+  .category-pill {
+    @apply px-4 py-2 rounded-full text-sm font-medium border border-dark-border
+           bg-dark-surface hover:border-brand-blue hover:bg-brand-blue/10
+           transition-all duration-200 cursor-pointer whitespace-nowrap;
+  }
+
+  /* Button primary */
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl bg-brand-blue hover:bg-brand-blue-light
+           font-semibold transition-all duration-200 hover:shadow-blue-glow
+           active:scale-95 text-white;
+  }
+
+  /* Button ghost */
+  .btn-ghost {
+    @apply px-6 py-3 rounded-xl border border-dark-border hover:border-brand-blue
+           font-semibold transition-all duration-200 text-gray-300 hover:text-white;
+  }
+
+  /* Badge */
+  .badge {
+    @apply px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider;
+  }
+  
+  /* Product card hover */
+  .product-card {
+    @apply bg-dark-card border border-dark-border rounded-2xl overflow-hidden
+           transition-all duration-300 hover:border-brand-blue/40 hover:shadow-card-hover
+           hover:-translate-y-1 cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 25%,
+      rgba(255, 255, 255, 0.07) 50%,
+      rgba(255, 255, 255, 0.02) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+}
