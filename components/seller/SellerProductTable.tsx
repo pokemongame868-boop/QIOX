@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Product } from '@/types';
 import { deleteProduct } from '@/lib/actions/products';
 import { formatPrice } from '@/lib/utils';
-import { Edit2, Trash2, Eye, Loader2, Package } from 'lucide-react';
+import { Edit2, Trash2, Eye, Loader2, Package, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const STATUS_STYLE: Record<string, string> = {
@@ -65,7 +65,7 @@ export default function SellerProductTable({ products }: { products: Product[] }
                   <div className="w-10 h-10 rounded-lg bg-dark-surface flex items-center justify-center text-xl flex-shrink-0">
                     {product.images?.[0]
                       ? <img src={product.images[0]} alt="" className="w-full h-full object-cover rounded-lg" />
-                      : '📦'}
+                      : <Package className="w-5 h-5 text-gray-600" />}
                   </div>
                   <div className="min-w-0">
                     <p className="font-medium text-white truncate max-w-[200px]">{product.name}</p>
@@ -90,7 +90,10 @@ export default function SellerProductTable({ products }: { products: Product[] }
                 </span>
               </td>
               <td className="px-6 py-4 text-amber-400 font-medium">
-                ★ {product.rating} <span className="text-gray-600 text-xs">({product.review_count})</span>
+                <span className="inline-flex items-center gap-1">
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  {product.rating} <span className="text-gray-600 text-xs">({product.review_count})</span>
+                </span>
               </td>
               <td className="px-6 py-4">
                 <div className="flex items-center gap-2 justify-end">

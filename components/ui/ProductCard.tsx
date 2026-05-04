@@ -8,6 +8,7 @@ import { formatPrice, calculateDiscount, cn } from '@/lib/utils';
 import AddToCartButton from './AddToCartButton';
 import WishlistButton  from './WishlistButton';
 import ProductImage from './ProductImage';
+import CategoryIcon from './CategoryIcon';
 
 interface Props {
   product:     Product;
@@ -15,17 +16,11 @@ interface Props {
   className?:  string;
 }
 
-const EMOJI: Record<string, string> = {
-  smartphones: '📱', laptops: '💻', appliances: '🏠',
-  headphones: '🎧', tablets: '📟', gaming: '🎮',
-};
-
 export default function ProductCard({ product, wishlisted = false, className }: Props) {
   const discount = product.old_price
     ? calculateDiscount(product.price, product.old_price) : null;
 
   const thumb = product.images?.[0];
-  const emoji = EMOJI[product.category_slug ?? ''] ?? '📦';
   const inStock = (product.stock_qty ?? 0) > 0;
 
   return (
@@ -40,9 +35,9 @@ export default function ProductCard({ product, wishlisted = false, className }: 
               loading="lazy"
             />
           ) : (
-            <span className="absolute inset-0 flex items-center justify-center text-7xl select-none group-hover:scale-110 transition-transform duration-300">
-              {emoji}
-            </span>
+            <div className="absolute inset-0 flex items-center justify-center select-none group-hover:scale-110 transition-transform duration-300">
+              <CategoryIcon slug={product.category_slug} className="w-20 h-20 text-gray-600" />
+            </div>
           )}
 
           <div className="absolute inset-0 bg-brand-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />

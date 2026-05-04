@@ -87,7 +87,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-10 pt-6 border-t border-dark-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
-          <p>© 2025 QIOX. Все права защищены.</p>
+          <p>Copyright 2025 QIOX. Все права защищены.</p>
           <div className="flex items-center gap-4">
             <Link href="/privacy" className="hover:text-gray-400 transition-colors">
               Конфиденциальность

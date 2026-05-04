@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Category } from "@/types";
+import CategoryIcon from "@/components/ui/CategoryIcon";
 
 interface CategoriesProps {
   categories: Category[];
@@ -62,8 +63,8 @@ export default function Categories({ categories }: CategoriesProps) {
             `}
           >
             {/* Icon */}
-            <div className="text-3xl md:text-4xl group-hover:scale-110 transition-transform duration-200">
-              {cat.icon}
+            <div className="group-hover:scale-110 transition-transform duration-200">
+              <CategoryIcon slug={cat.slug} className="w-8 h-8 md:w-10 md:h-10" />
             </div>
 
             {/* Label */}

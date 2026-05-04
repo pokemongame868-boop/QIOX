@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { getAllOrders } from '@/lib/actions/orders';
 import HeaderWrapper from '@/components/layout/HeaderWrapper';
 import AdminOrdersTable from '@/components/admin/AdminOrdersTable';
-import { Users, Package, ShoppingCart, TrendingUp } from 'lucide-react';
+import { Users, Package, ShoppingCart, TrendingUp, Sprout } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 
 export const metadata = { title: 'Админ-панель — QIOX' };
@@ -60,16 +60,21 @@ export default async function AdminDashboard() {
         {/* Quick links */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {[
-            { href: '/dashboard/admin/users',    label: 'Управление пользователями' },
-            { href: '/dashboard/admin/products', label: 'Все товары'                },
-            { href: '/dashboard/admin/orders',   label: 'Все заказы'               },
-            { href: '/dashboard/admin/seed',     label: '🌱 Загрузить тест-данные'  },
-          ].map(l => (
-            <a key={l.href} href={l.href}
-              className="px-4 py-3 rounded-xl bg-dark-surface border border-dark-border text-sm text-gray-300 hover:text-white hover:border-brand-blue transition-all text-center font-medium">
-              {l.label}
-            </a>
-          ))}
+            { href: '/dashboard/admin/users',    label: 'Управление пользователями', icon: null },
+            { href: '/dashboard/admin/products', label: 'Все товары',                icon: null },
+            { href: '/dashboard/admin/orders',   label: 'Все заказы',                icon: null },
+            { href: '/dashboard/admin/seed',     label: 'Загрузить тест-данные',     icon: Sprout },
+          ].map(l => {
+            const Icon = l.icon;
+
+            return (
+              <a key={l.href} href={l.href}
+                className="px-4 py-3 rounded-xl bg-dark-surface border border-dark-border text-sm text-gray-300 hover:text-white hover:border-brand-blue transition-all text-center font-medium inline-flex items-center justify-center gap-2">
+                {Icon && <Icon className="w-4 h-4" />}
+                {l.label}
+              </a>
+            );
+          })}
         </div>
 
         {/* Recent orders */}

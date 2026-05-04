@@ -3,7 +3,7 @@
 
 import { useState, useTransition } from 'react';
 import Link from 'next/link';
-import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Loader2 } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Loader2, Package } from 'lucide-react';
 import { CartItem } from '@/types';
 import { updateCartQuantity, removeFromCart } from '@/lib/actions/cart';
 import { formatPrice } from '@/lib/utils';
@@ -63,7 +63,7 @@ export default function CartClient({ initialItems }: Props) {
             <div className="w-20 h-20 rounded-xl bg-dark-surface flex items-center justify-center flex-shrink-0 text-3xl">
               {item.images?.[0]
                 ? <ProductImage src={item.images[0]} alt={item.product_name ?? ''} width={80} height={80} className="rounded-xl object-cover w-full h-full" />
-                : '📦'}
+                : <Package className="w-8 h-8 text-gray-600" />}
             </div>
 
             {/* Info */}

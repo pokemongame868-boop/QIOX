@@ -4,7 +4,7 @@ import { getSellerProducts } from '@/lib/actions/products';
 import { getProfile } from '@/lib/actions/auth';
 import HeaderWrapper from '@/components/layout/HeaderWrapper';
 import SellerProductTable from '@/components/seller/SellerProductTable';
-import { Plus, Package, TrendingUp, DollarSign, Star } from 'lucide-react';
+import { Plus, Package, TrendingUp, DollarSign, Star, Hand } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 
 export const metadata = { title: 'Панель продавца — QIOX' };
@@ -30,7 +30,10 @@ export default async function SellerDashboard() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="font-display text-3xl font-bold text-white">Панель продавца</h1>
-            <p className="text-gray-500 mt-1">Привет, {profile?.full_name} 👋</p>
+            <p className="text-gray-500 mt-1 inline-flex items-center gap-1.5">
+              Привет, {profile?.full_name}
+              <Hand className="w-4 h-4 text-brand-blue-light" />
+            </p>
           </div>
           <Link href="/dashboard/seller/products/new" className="btn-primary flex items-center gap-2">
             <Plus className="w-4 h-4" />

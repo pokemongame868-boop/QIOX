@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useTransition } from 'react';
 import Link from 'next/link';
-import { Search, ShoppingCart, User, Menu, X, ChevronDown, Store, Shield, LogOut } from 'lucide-react';
+import { Search, ShoppingCart, User, Menu, X, ChevronDown, Store, Shield, LogOut, Rocket } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Profile, UserRole } from '@/types';
 import { logoutAction } from '@/lib/actions/auth';
@@ -42,7 +42,10 @@ export default function Header({ profile, cartCount = 0 }: Props) {
     <>
       <div className="bg-brand-blue/10 border-b border-brand-blue/20 hidden md:block">
         <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between text-xs text-gray-400">
-          <span>🚀 Бесплатная доставка от 15 000 ₸</span>
+          <span className="inline-flex items-center gap-1.5">
+            <Rocket className="w-3.5 h-3.5 text-brand-blue-light" />
+            Бесплатная доставка от 15 000 ₸
+          </span>
           <span>Пн–Вс: 9:00–22:00 · +7 (727) 000-00-00</span>
         </div>
       </div>

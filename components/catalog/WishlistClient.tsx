@@ -8,13 +8,9 @@ import { Product } from '@/types';
 import { removeFromWishlist } from '@/lib/actions/wishlist';
 import AddToCartButton from '@/components/ui/AddToCartButton';
 import ProductImage from '@/components/ui/ProductImage';
+import CategoryIcon from '@/components/ui/CategoryIcon';
 import { formatPrice, calculateDiscount } from '@/lib/utils';
 import { useToast } from '@/lib/hooks/useToast';
-
-const EMOJI: Record<string, string> = {
-  smartphones: '📱', laptops: '💻', appliances: '🏠',
-  headphones: '🎧', tablets: '📟', gaming: '🎮',
-};
 
 export default function WishlistClient({ initialProducts }: { initialProducts: Product[] }) {
   const [products, setProducts]    = useState(initialProducts);
@@ -55,7 +51,6 @@ export default function WishlistClient({ initialProducts }: { initialProducts: P
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {products.map(product => {
         const thumb    = product.images?.[0];
-        const emoji    = EMOJI[product.category_slug ?? ''] ?? '📦';
         const discount = product.old_price ? calculateDiscount(product.price, product.old_price) : null;
         const inStock  = (product.stock_qty ?? 0) > 0;
         const isRemoving = removingId === product.id;
@@ -75,7 +70,9 @@ export default function WishlistClient({ initialProducts }: { initialProducts: P
                   sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
                 />
               ) : (
-                <span className="absolute inset-0 flex items-center justify-center text-6xl">{emoji}</span>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <CategoryIcon slug={product.category_slug} className="w-16 h-16 text-gray-600" />
+                </div>
               )}
               {discount && (
                 <span className="absolute top-3 left-3 badge bg-orange-500 text-white">-{discount}%</span>

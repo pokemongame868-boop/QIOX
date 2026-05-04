@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ProductImage from '@/components/ui/ProductImage';
+import CategoryIcon from '@/components/ui/CategoryIcon';
 
 interface Props {
   images:       string[];
@@ -12,15 +13,9 @@ interface Props {
   categorySlug?: string;
 }
 
-const EMOJI: Record<string, string> = {
-  smartphones: '📱', laptops: '💻', appliances: '🏠',
-  headphones: '🎧', tablets: '📟', gaming: '🎮',
-};
-
 export default function ImageGallery({ images, productName, categorySlug }: Props) {
   const [active, setActive] = useState(0);
   const [zoomed, setZoomed] = useState(false);
-  const emoji = EMOJI[categorySlug ?? ''] ?? '📦';
   const hasImages = images && images.length > 0;
 
   const prev = () => setActive(p => (p - 1 + images.length) % images.length);
@@ -51,7 +46,7 @@ export default function ImageGallery({ images, productName, categorySlug }: Prop
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-[8rem] select-none">{emoji}</span>
+            <CategoryIcon slug={categorySlug} className="w-32 h-32 text-gray-600" />
           </div>
         )}
 

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, Zap, Star, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Banner } from "@/types";
+import CategoryIcon from "@/components/ui/CategoryIcon";
 
 interface BannerSliderProps {
   banners: Banner[];
@@ -22,6 +23,8 @@ const BADGE_COLORS: Record<string, string> = {
   "ХИТ ПРОДАЖ": "bg-brand-green text-dark-bg",
   "СКИДКА 20%": "bg-orange-500 text-white",
 };
+
+const SLIDE_CATEGORY_ICONS = ["smartphones", "laptops", "smartphones"];
 
 // Decorative background patterns per slide
 const BG_DECORATIONS = [
@@ -141,14 +144,16 @@ export default function BannerSlider({ banners }: BannerSliderProps) {
         {/* Right side: Product visual placeholder */}
         <div className="absolute right-0 top-0 bottom-0 w-1/3 md:w-2/5 hidden sm:flex items-center justify-center">
           <div
-            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full flex items-center justify-center text-8xl md:text-9xl animate-float"
+            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full flex items-center justify-center animate-float"
             style={{
               background: `radial-gradient(circle, ${banner.accent_color}15, transparent 70%)`,
             }}
           >
-            {current === 0 && "📱"}
-            {current === 1 && "💻"}
-            {current === 2 && "📱"}
+            <CategoryIcon
+              slug={SLIDE_CATEGORY_ICONS[current]}
+              className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44"
+              style={{ color: banner.accent_color }}
+            />
           </div>
         </div>
       </div>

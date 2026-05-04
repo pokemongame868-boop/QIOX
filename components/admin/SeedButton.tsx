@@ -3,7 +3,7 @@
 
 import { useState, useTransition } from 'react';
 import { seedProducts } from '@/lib/actions/products';
-import { Loader2, CheckCircle } from 'lucide-react';
+import { Loader2, CheckCircle, Sprout } from 'lucide-react';
 
 export default function SeedButton() {
   const [done, setDone] = useState(false);
@@ -32,7 +32,8 @@ export default function SeedButton() {
       <button onClick={handle} disabled={pending}
         className="btn-primary flex items-center gap-2 mx-auto disabled:opacity-60">
         {pending && <Loader2 className="w-4 h-4 animate-spin" />}
-        {pending ? 'Загружаем...' : '🌱 Загрузить тестовые данные'}
+        {!pending && <Sprout className="w-4 h-4" />}
+        {pending ? 'Загружаем...' : 'Загрузить тестовые данные'}
       </button>
     </div>
   );
