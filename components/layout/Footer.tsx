@@ -4,11 +4,11 @@ import { Instagram, Youtube, Send } from "lucide-react";
 
 const FOOTER_LINKS = {
   Каталог: [
-    { label: "Смартфоны", href: "/catalog/smartphones" },
-    { label: "Ноутбуки", href: "/catalog/laptops" },
-    { label: "Наушники", href: "/catalog/headphones" },
-    { label: "Планшеты", href: "/catalog/tablets" },
-    { label: "Бытовая техника", href: "/catalog/appliances" },
+    { label: "Смартфоны", href: "/catalog?category=smartphones" },
+    { label: "Ноутбуки", href: "/catalog?category=laptops" },
+    { label: "Наушники", href: "/catalog?category=headphones" },
+    { label: "Планшеты", href: "/catalog?category=tablets" },
+    { label: "Бытовая техника", href: "/catalog?category=appliances" },
   ],
   Покупателям: [
     { label: "Доставка и оплата", href: "/delivery" },
@@ -43,19 +43,22 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="#"
+                href="/contacts"
+                aria-label="Instagram QIOX"
                 className="p-2 rounded-lg bg-dark-card border border-dark-border text-gray-400 hover:text-white hover:border-brand-blue transition-all"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="/blog"
+                aria-label="YouTube QIOX"
                 className="p-2 rounded-lg bg-dark-card border border-dark-border text-gray-400 hover:text-white hover:border-brand-blue transition-all"
               >
                 <Youtube className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="/contacts"
+                aria-label="Telegram QIOX"
                 className="p-2 rounded-lg bg-dark-card border border-dark-border text-gray-400 hover:text-white hover:border-brand-blue transition-all"
               >
                 <Send className="w-4 h-4" />
