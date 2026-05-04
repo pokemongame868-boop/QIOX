@@ -2,6 +2,7 @@
 
 // components/home/BannerSlider.tsx
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Zap, Star, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -23,8 +24,6 @@ const BADGE_COLORS: Record<string, string> = {
   "ХИТ ПРОДАЖ": "bg-brand-green text-dark-bg",
   "СКИДКА 20%": "bg-orange-500 text-white",
 };
-
-const SLIDE_CATEGORY_ICONS = ["smartphones", "laptops", "smartphones"];
 
 // Decorative background patterns per slide
 const BG_DECORATIONS = [
@@ -53,6 +52,7 @@ const BG_DECORATIONS = [
 export default function BannerSlider({ banners }: BannerSliderProps) {
   const [current, setCurrent] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
 
   const goTo = useCallback(
     (index: number) => {
@@ -77,6 +77,11 @@ export default function BannerSlider({ banners }: BannerSliderProps) {
   }, [next]);
 
   const banner = banners[current];
+  const showProductImage = banner.image && !imageFailed;
+
+  useEffect(() => {
+    setImageFailed(false);
+  }, [banner.image]);
 
   return (
     <div className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl group">
@@ -141,19 +146,32 @@ export default function BannerSlider({ banners }: BannerSliderProps) {
           </Link>
         </div>
 
-        {/* Right side: Product visual placeholder */}
+        {/* Right side: product visual */}
         <div className="absolute right-0 top-0 bottom-0 w-1/3 md:w-2/5 hidden sm:flex items-center justify-center">
           <div
-            className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full flex items-center justify-center animate-float"
+            className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full flex items-center justify-center animate-float"
             style={{
               background: `radial-gradient(circle, ${banner.accent_color}15, transparent 70%)`,
             }}
           >
-            <CategoryIcon
-              slug={SLIDE_CATEGORY_ICONS[current]}
-              className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44"
-              style={{ color: banner.accent_color }}
-            />
+            {showProductImage ? (
+              <Image
+                src={banner.image!}
+                alt={banner.image_alt ?? banner.title}
+                fill
+                priority={current === 0}
+                sizes="(max-width: 768px) 40vw, 320px"
+                className="object-contain drop-shadow-[0_28px_45px_rgba(0,0,0,.45)] transition-transform duration-500"
+                style={{ transform: `scale(${banner.visual_scale ?? 1})` }}
+                onError={() => setImageFailed(true)}
+              />
+            ) : (
+              <CategoryIcon
+                slug={banner.visual_category}
+                className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44"
+                style={{ color: banner.accent_color }}
+              />
+            )}
           </div>
         </div>
       </div>

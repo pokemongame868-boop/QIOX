@@ -66,6 +66,10 @@ export const BANNERS: Banner[] = [
     bg_gradient: "from-slate-900 via-blue-950 to-slate-900",
     accent_color: "#3B82F6",
     tag: "от 189 990 ₸",
+    image: "/banners/iphone-16-pro-max.png",
+    image_alt: "iPhone 16 Pro Max",
+    visual_category: "smartphones",
+    visual_scale: 1,
   },
   {
     id: "2",
@@ -77,6 +81,10 @@ export const BANNERS: Banner[] = [
     bg_gradient: "from-gray-900 via-zinc-900 to-gray-900",
     accent_color: "#22C55E",
     tag: "от 579 990 ₸",
+    image: "/banners/macbook-pro-m4.png",
+    image_alt: "MacBook Pro M4",
+    visual_category: "laptops",
+    visual_scale: 1.08,
   },
   {
     id: "3",
@@ -88,6 +96,10 @@ export const BANNERS: Banner[] = [
     bg_gradient: "from-indigo-950 via-purple-950 to-slate-900",
     accent_color: "#A78BFA",
     tag: "от 149 990 ₸",
+    image: "/banners/samsung-galaxy-s25.png",
+    image_alt: "Samsung Galaxy S25",
+    visual_category: "smartphones",
+    visual_scale: 1,
   },
 ];
 

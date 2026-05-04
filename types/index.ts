@@ -47,6 +47,10 @@ export interface Banner {
   bg_gradient:  string;
   accent_color: string;
   tag?:         string;
+  image?:       string;
+  image_alt?:   string;
+  visual_category?: string;
+  visual_scale?: number;
 }
 
 export interface SpecTemplate {
